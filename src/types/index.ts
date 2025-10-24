@@ -11,6 +11,7 @@ export interface ButtonProps extends ElementProps {
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "outlined";
+  disabled?: boolean;
 }
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {

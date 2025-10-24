@@ -7,11 +7,13 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   children,
   className = "",
+  disabled
 }) => {
   return (
     <button
       type={type}
       onClick={onClick}
+      disabled={disabled}
       className={`px-4 py-2 rounded transition cursor-pointer font-medium ${
         variant === "primary"
           ? "bg-blue-500 text-white hover:bg-blue-600"
