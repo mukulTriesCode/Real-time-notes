@@ -39,3 +39,9 @@ h5 {
 h6 {
     @apply text-sm font-medium;
 }
+
+.prism-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
