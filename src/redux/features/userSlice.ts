@@ -1,14 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-export interface CounterState {
-    id: string
-    email: string
+export interface userState {
+    user: {
+        id: string
+        email: string
+    } | null
 }
 
-const initialState: CounterState = {
-    id: '',
-    email: '',
+const initialState: userState = {
+    user: null
 }
 
 export const userSlice = createSlice({
@@ -16,12 +17,13 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action: PayloadAction<{ id: string; email: string }>) => {
-            state.id = action.payload.id
-            state.email = action.payload.email
+            state.user = {
+                id: action.payload.id,
+                email: action.payload.email
+            };
         },
         clearUser: (state) => {
-            state.id = ''
-            state.email = ''
+            state.user = null
         }
     }
 })
