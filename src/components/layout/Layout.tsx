@@ -1,13 +1,16 @@
 "use client";
 import React from "react";
 import Navbar from "./Navbar";
-import AppProvider from "./Provider";
+import AppProvider from "../provider/Provider";
+import SessionProvider from "../provider/SessionProvider";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <AppProvider>
-      <Navbar layout="default" />
-      <main>{children}</main>
+      <SessionProvider>
+        <Navbar layout="default" />
+        <main>{children}</main>
+      </SessionProvider>
     </AppProvider>
   );
 };
