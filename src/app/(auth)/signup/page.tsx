@@ -1,5 +1,5 @@
 import AuthForm from "@/components/AuthForm";
-import Container from "@/components/common/Container";
+import Container from "@/components/layout/Container";
 import Heading from "@/components/common/Heading";
 import React from "react";
 
