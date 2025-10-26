@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import Container from "./common/Container";
+import Container from "./Container";
 
 const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
   layout = "default",
