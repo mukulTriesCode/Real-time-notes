@@ -1,5 +1,6 @@
-// "use client";
+"use client";
 import { supabase } from "@/lib/supabase/client";
+import { setUser } from "@/redux/features/userSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { useEffect } from "react";
 
@@ -12,10 +13,12 @@ const useSession = () => {
       const session = data.session;
       if (session) {
         const user = session?.user;
-        dispatch({
-          type: "SET_USER",
-          user: { id: user.id, email: user.email || "" },
-        });
+        dispatch(
+          setUser({
+            id: user.id,
+            email: user.email || "",
+          })
+        );
       }
     };
     getSession();
