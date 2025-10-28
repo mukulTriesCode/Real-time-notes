@@ -5,6 +5,11 @@ import Container from "./Container";
 const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
   layout = "default",
 }) => {
+  const navLinks = [
+    { href: "/login", label: "Login" },
+    { href: "/signup", label: "Sign Up" },
+  ];
+
   const styles =
     layout === "rounded"
       ? "max-w-[1200px] border rounded-full bg-white/5 [&&]:px-6 border-gray-700"
@@ -12,7 +17,7 @@ const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
       ? "border-b border-gray-700/50"
       : "text-white";
   return (
-    <nav className={`mb-4 ${layout=== "default" ? "bg-blue-500" : ""}`}>
+    <nav className={`mb-4 ${layout === "default" ? "bg-blue-500" : ""}`}>
       <Container
         className={`flex justify-between items-center py-4 ${styles} `}
       >
@@ -22,12 +27,11 @@ const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
           </Link>
         </div>
         <div className="flex gap-6 font-medium">
-          <Link href="/login" className="hover:underline">
-            Login
-          </Link>
-          <Link href="/signup" className="hover:underline">
-            Sign Up
-          </Link>
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href} className="hover:underline">
+              {link.label}
+            </Link>
+          ))}
         </div>
       </Container>
     </nav>
