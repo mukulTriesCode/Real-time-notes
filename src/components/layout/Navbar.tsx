@@ -1,13 +1,27 @@
 import Link from "next/link";
 import React from "react";
 import Container from "./Container";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import Button from "../common/Button";
+import { clearUser } from "@/redux/features/userSlice";
+import { supabase } from "@/lib/supabase/client";
 
 const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
   layout = "default",
 }) => {
+  const { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
+  const isAuthenticated = Boolean(user?.id);
+
   const navLinks = [
     { href: "/login", label: "Login" },
     { href: "/signup", label: "Sign Up" },
+  ];
+
+  const authLinks = [
+    { href: "/dashboard", label: "Dashboard" },
+    { href: "/profile", label: "Profile" },
   ];
 
   const styles =
@@ -16,6 +30,12 @@ const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
       : layout === "minimal"
       ? "border-b border-gray-700/50"
       : "text-white";
+
+  const handleLogout = () => {
+    dispatch(clearUser());
+    supabase.auth.signOut();
+  };
+
   return (
     <nav className={`mb-4 ${layout === "default" ? "bg-blue-500" : ""}`}>
       <Container
@@ -23,15 +43,40 @@ const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
       >
         <div>
           <Link href="/" className="text-2xl font-semibold">
-            <p className="text-xl">Real-Time Notes</p>
+            <p className="leading-11">Real-Time Notes</p>
           </Link>
         </div>
-        <div className="flex gap-6 font-medium">
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:underline">
-              {link.label}
-            </Link>
-          ))}
+        <div className="flex gap-6 font-medium items-center">
+          {!isAuthenticated ? (
+            navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="hover:underline"
+              >
+                {link.label}
+              </Link>
+            ))
+          ) : (
+            <>
+              {authLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="hover:underline"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Button
+                onClick={handleLogout}
+                variant="outlined"
+                className="bg-white"
+              >
+                Logout
+              </Button>
+            </>
+          )}
         </div>
       </Container>
     </nav>
