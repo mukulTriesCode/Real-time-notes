@@ -1,12 +1,12 @@
 import React from "react";
 
-const Notes: React.FC = () => {
+const Notes: React.FC<{ selectedNoteId: string | null }> = ({
+  selectedNoteId,
+}) => {
   return (
     <div>
-      Notes Page
-      <p>Here you can manage your notes.</p>
-      <button>Create Note</button>
-      <button>Delete Note</button>
+      <h2 className="font-bold mb-4">Selected Note ID:</h2>
+      <p>{selectedNoteId ?? "No note selected"}</p>
     </div>
   );
 };
