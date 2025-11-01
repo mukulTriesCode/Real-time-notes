@@ -17,3 +17,15 @@ export interface ButtonProps extends ElementProps {
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
+
+export interface NoteInterface {
+  id: string;
+  title: string;
+  content: string;
+  updatedAt: string;
+}
+
+export interface NotesState {
+  notes: NoteInterface[];
+  selectedNoteId: string | null;
+}
