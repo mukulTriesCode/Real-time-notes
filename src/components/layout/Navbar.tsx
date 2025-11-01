@@ -5,10 +5,12 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Button from "../common/Button";
 import { clearUser } from "@/redux/features/userSlice";
 import { supabase } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 
 const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
   layout = "default",
 }) => {
+  const router = useRouter();
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
@@ -34,6 +36,7 @@ const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
   const handleLogout = () => {
     dispatch(clearUser());
     supabase.auth.signOut();
+    router.push("/login");
   };
 
   return (
