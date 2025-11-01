@@ -40,7 +40,7 @@ const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
   };
 
   return (
-    <nav className={`mb-4 ${layout === "default" ? "bg-blue-500" : ""}`}>
+    <nav className={`${layout === "default" ? "bg-blue-500" : ""}`}>
       <Container
         className={`flex justify-between items-center py-4 ${styles} `}
       >
