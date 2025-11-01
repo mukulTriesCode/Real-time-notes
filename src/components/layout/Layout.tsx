@@ -9,7 +9,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <AppProvider>
       <SessionProvider>
         <Navbar layout="default" />
-        <main>{children}</main>
+        <main className="min-h-[calc(100dvh-76px)]">{children}</main>
       </SessionProvider>
     </AppProvider>
   );
