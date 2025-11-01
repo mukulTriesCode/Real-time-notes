@@ -1,12 +1,9 @@
+import type { NotesState } from '@/types';
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-export interface notesState {
-    notes: { id: string, title: string, content: string, updatedAt: string }[];
-    selectedNoteId: string | null;
-}
 
-const initialState: notesState = {
+const initialState: NotesState = {
     notes: [],
     selectedNoteId: null
 }
