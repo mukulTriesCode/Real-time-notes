@@ -1,10 +1,12 @@
 import React from "react";
 import Notes from "./Notes";
 
-const Dashboard: React.FC = () => {
+const Dashboard: React.FC<{ selectedNoteId: string | null }> = ({
+  selectedNoteId,
+}) => {
   return (
     <section className="col-span-7 p-4">
-      <Notes />
+      <Notes selectedNoteId={selectedNoteId} />
     </section>
   );
 };
