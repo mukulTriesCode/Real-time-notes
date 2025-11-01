@@ -3,7 +3,7 @@ import React from "react";
 import Container from "./Container";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Button from "../common/Button";
-import { clearUser } from "@/redux/features/userSlice";
+import { clearUser } from "@/redux/features/user/userSlice";
 import { supabase } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 

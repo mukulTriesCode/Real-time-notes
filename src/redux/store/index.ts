@@ -1,4 +1,4 @@
-import { userSlice } from '@/redux/features/userSlice'
+import { userSlice } from '@/redux/features/user/userSlice'
 import { configureStore } from '@reduxjs/toolkit'
 
 export const store = configureStore({

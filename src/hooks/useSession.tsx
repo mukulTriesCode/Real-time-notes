@@ -1,6 +1,6 @@
 "use client";
 import { supabase } from "@/lib/supabase/client";
-import { clearUser, setUser } from "@/redux/features/userSlice";
+import { clearUser, setUser } from "@/redux/features/user/userSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { useEffect } from "react";
 
