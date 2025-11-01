@@ -1,6 +1,5 @@
-import React from "react";
-import Dashboard from "@/components/Dashboard";
 import Sidebar from "@/components/layout/Sidebar";
+import React from "react";
 
 export default function RootLayout({
   children,
@@ -8,9 +7,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-8 h-full">
       <Sidebar />
-      <Dashboard />
+      {children}
     </div>
   );
 }
