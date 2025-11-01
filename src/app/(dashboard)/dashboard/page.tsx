@@ -1,13 +1,8 @@
-import Notes from "@/components/Notes";
+import Dashboard from "@/components/Dashboard";
 import React from "react";
 
 const Page: React.FC = () => {
-  return (
-    <div>
-      Dashboard Page
-      <Notes />
-    </div>
-  );
+  return <Dashboard />;
 };
 
 export default Page;
