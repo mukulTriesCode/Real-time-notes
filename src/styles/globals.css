@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+    --color-primary: #202020;
+    --color-primary-dark: #191919;
+    --color-light-gray: #373737;
+    --color-gray: #9B9B9B;
+}
+
 @layer utilities {
     .container {
         @apply mx-auto px-4;
