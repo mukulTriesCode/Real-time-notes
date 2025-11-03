@@ -1,7 +1,7 @@
 import type { NotesState, NoteInterface } from '@/types';
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-
+import { v4 as uuidv4 } from "uuid";
 
 const initialState: NotesState = {
     notes: [],
@@ -12,8 +12,16 @@ export const notesSlice = createSlice({
     name: 'notes',
     initialState,
     reducers: {
-        addNote: (state, action: PayloadAction<{ id: string; title: string; content: string; updatedAt: string }>) => {
-            state.notes.push(action.payload);
+        addNote: (state) => {
+            const newNote: NoteInterface = {
+                id: uuidv4(),
+                title: 'Untitled',
+                content: "",
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            }
+            state.notes.unshift(newNote);
+            state.selectedNoteId = newNote.id
         },
         selectNote: (state, action: PayloadAction<string | null>) => {
             state.selectedNoteId = action.payload;
