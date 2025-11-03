@@ -1,17 +1,16 @@
 "use client";
 import React from "react";
 import Navbar from "./Navbar";
-import AppProvider from "../provider/Provider";
-import SessionProvider from "../provider/SessionProvider";
+import { useAppSelector } from "@/redux/hooks";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user } = useAppSelector((state) => state.auth);
+  const isAuthenticated = Boolean(user?.id);
   return (
-    <AppProvider>
-      <SessionProvider>
-        <Navbar layout="default" />
-        <main className="min-h-[calc(100dvh-76px)]">{children}</main>
-      </SessionProvider>
-    </AppProvider>
+    <>
+      {!isAuthenticated && <Navbar layout="default" />}
+      <main className="min-h-[calc(100dvh-76px)]">{children}</main>
+    </>
   );
 };
 
