@@ -1,4 +1,4 @@
-import type { NotesState } from '@/types';
+import type { NotesState, NoteInterface } from '@/types';
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
