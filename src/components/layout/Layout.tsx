@@ -9,7 +9,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       {!isAuthenticated && <Navbar layout="default" />}
-      <main className="min-h-[calc(100dvh-76px)]">{children}</main>
+      <main
+        className={isAuthenticated ? "h-screen" : "min-h-[calc(100dvh-76px)]"}
+      >
+        {children}
+      </main>
     </>
   );
 };
