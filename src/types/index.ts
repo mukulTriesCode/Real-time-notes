@@ -23,6 +23,7 @@ export interface NoteInterface {
   title: string;
   content: string;
   updatedAt: string;
+  createdAt: string;
 }
 
 export interface NotesState {
