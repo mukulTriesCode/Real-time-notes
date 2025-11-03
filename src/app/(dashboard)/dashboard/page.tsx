@@ -7,7 +7,7 @@ import React from "react";
 const Page: React.FC = () => {
   const { notes } = useAppSelector((state) => state.notes);
   return (
-    <div className="grid grid-cols-8 h-full">
+    <div className="flex h-full">
       <Sidebar notes={notes} />
       <Dashboard />
     </div>
