@@ -18,7 +18,7 @@ export const notesSlice = createSlice({
         selectNote: (state, action: PayloadAction<string | null>) => {
             state.selectedNoteId = action.payload;
         },
-        updateNote: (state, action: PayloadAction<{ id: string; title?: string; content?: string; updatedAt: string }>) => {
+        updateNote: (state, action: PayloadAction<Omit<NoteInterface, 'createdAt'>>) => {
             const note = state.notes.find(note => note.id === action.payload.id);
             if (note) {
                 note.title = action.payload.title || note.title;
@@ -32,7 +32,7 @@ export const notesSlice = createSlice({
                 state.selectedNoteId = null;
             }
         },
-        setNotes: (state, action: PayloadAction<{ id: string; title: string; content: string; updatedAt: string }[]>) => {
+        setNotes: (state, action: PayloadAction<NoteInterface[]>) => {
             // TODO: Sync with Supabase
             state.notes = action.payload;
         }
