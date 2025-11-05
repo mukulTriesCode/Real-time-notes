@@ -1,5 +1,6 @@
-import { useAppSelector } from "@/redux/hooks";
+"use client";
 import React from "react";
+import { useAppSelector } from "@/redux/hooks";
 
 const Notes: React.FC = () => {
   const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
