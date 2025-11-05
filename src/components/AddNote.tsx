@@ -12,7 +12,7 @@ const AddNote: React.FC = () => {
 
   return (
     <div
-      className="flex items-center gap-2 font-semibold px-2 py-1 hover:bg-light-gray rounded-md cursor-pointer transition"
+      className="notes-btn"
       onClick={handleAddNote}
     >
       <PlusIcon />
