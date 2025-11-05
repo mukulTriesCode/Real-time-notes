@@ -1,18 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import AddNote from "../AddNote";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectNote } from "@/redux/features/notes/notesSlice";
 import PageIcon from "../icons/PageIcon";
 
 const Sidebar: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
-  const hasNotes = notes && notes.length > 0;
-  const handleSelectNote = (id: string) => {
-    dispatch(selectNote(id));
-  };
   const [showNotes, setShowNotes] = useState<boolean>(true);
+  const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
+  const dispatch = useAppDispatch();
+  const hasNotes = notes?.length > 0;
+
+  const handleSelectNote = useCallback(
+    (id: string) => {
+      dispatch(selectNote(id));
+    },
+    [dispatch]
+  );
+
   return (
     <aside className="max-w-60 w-full bg-primary border-r border-light-gray p-4 text-gray">
       <h2 className="font-bold mb-2 text-white">Notes app</h2>
