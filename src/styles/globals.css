@@ -46,3 +46,7 @@ h5 {
 h6 {
     @apply text-sm font-medium;
 }
+
+.notes-btn {
+    @apply flex items-center gap-2 font-semibold px-2 py-1 active:bg-light-gray/80 hover:bg-light-gray rounded-md cursor-pointer transition;
+}
