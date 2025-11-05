@@ -1,12 +1,13 @@
-import type { NoteInterface } from "@/types";
+"use client";
 import React from "react";
 import AddNote from "../AddNote";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectNote } from "@/redux/features/notes/notesSlice";
 
-const Sidebar: React.FC<{ notes: NoteInterface[] }> = ({ notes }) => {
+const Sidebar: React.FC = () => {
   const dispatch = useAppDispatch();
-  const selectedNote = useAppSelector((state) => state.notes.selectedNoteId);
+  const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
+  const hasNotes = notes && notes.length > 0;
   const handleSelectNote = (id: string) => {
     dispatch(selectNote(id));
   };
@@ -18,17 +19,23 @@ const Sidebar: React.FC<{ notes: NoteInterface[] }> = ({ notes }) => {
         <span className="text-sm text-gray/70">Your Notes</span>
       </div>
       <div className="mt-1 flex flex-col gap-0.5 overflow-y-auto max-h-[350px]">
-        {notes?.map((note) => (
-          <div
-            onClick={() => handleSelectNote(note.id)}
-            key={note?.id}
-            className={`notes-btn ${
-              selectedNote === note.id ? "bg-light-gray" : ""
-            }`}
-          >
-            {note?.title}
+        {hasNotes ? (
+          notes?.map((note) => (
+            <div
+              onClick={() => handleSelectNote(note.id)}
+              key={note?.id}
+              className={`notes-btn ${
+                selectedNoteId === note.id ? "bg-light-gray" : ""
+              }`}
+            >
+              {note?.title}
+            </div>
+          ))
+        ) : (
+          <div className="text-sm text-gray/50 italic px-2">
+            No notes available
           </div>
-        ))}
+        )}
       </div>
     </aside>
   );
