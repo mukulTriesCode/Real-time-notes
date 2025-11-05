@@ -2,11 +2,17 @@ import { useAppSelector } from "@/redux/hooks";
 import React from "react";
 
 const Notes: React.FC = () => {
-  const { selectedNoteId } = useAppSelector((state) => state.notes);
+  const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
+  const selectedNote = notes.find((note) => note.id === selectedNoteId);
   return (
     <div>
-      <h2 className="font-bold mb-4">Selected Note ID:</h2>
-      <p>{selectedNoteId ?? "No note selected"}</p>
+      <h5 className="font-bold mb-4">{selectedNote?.title}</h5>
+      {selectedNote && (
+        <div>
+          <h3 className="font-bold mt-4">Note Details:</h3>
+          <p>{selectedNote.content}</p>
+        </div>
+      )}
     </div>
   );
 };
