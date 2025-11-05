@@ -29,7 +29,7 @@ const Sidebar: React.FC = () => {
         <span className="text-sm text-gray/70">Your Notes</span>
       </div>
       {showNotes && (
-        <div className="mt-1 flex flex-col gap-0.5 overflow-y-auto max-h-[350px] select-none">
+        <div className="mt-1 flex flex-col gap-0.5 overflow-y-auto max-h-[338px] select-none">
           {hasNotes ? (
             notes?.map((note) => (
               <div
