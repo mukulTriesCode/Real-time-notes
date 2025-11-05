@@ -3,6 +3,7 @@ import React from "react";
 import AddNote from "../AddNote";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectNote } from "@/redux/features/notes/notesSlice";
+import PageIcon from "../icons/PageIcon";
 
 const Sidebar: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -28,6 +29,7 @@ const Sidebar: React.FC = () => {
                 selectedNoteId === note.id ? "bg-light-gray" : ""
               }`}
             >
+              <PageIcon />
               {note?.title}
             </div>
           ))
