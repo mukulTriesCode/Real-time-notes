@@ -24,6 +24,7 @@ export interface NoteInterface {
   content: string;
   updatedAt: string;
   createdAt: string;
+  icon?: string;
 }
 
 export interface NotesState {
