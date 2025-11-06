@@ -32,6 +32,7 @@ export const notesSlice = createSlice({
                 note.title = action.payload.title || note.title;
                 note.content = action.payload.content || note.content;
                 note.updatedAt = action.payload.updatedAt;
+                note.icon = action.payload.icon || note.icon;
             }
         },
         deleteNote: (state, action: PayloadAction<string>) => {
