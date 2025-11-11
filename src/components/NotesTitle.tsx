@@ -10,14 +10,14 @@ import Input from "./common/Input";
 const NotesTitle: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isEmojiModalOpen, setIsEmojiModalOpen] = useState<boolean>(false);
+
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
-  const selectedNote = notes?.find((note) => note?.id === selectedNoteId);
-
-  const titleValue = selectedNote?.title;
-
   const dispatch = useAppDispatch();
+  const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
+
+  const selectedNote = notes?.find((note) => note?.id === selectedNoteId);
+  const titleValue = selectedNote?.title;
 
   const updatedNoteContent: Omit<NoteInterface, "createdAt"> = {
     id: selectedNote?.id || "",
@@ -56,6 +56,7 @@ const NotesTitle: React.FC = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isModalOpen, selectedNote]);
+
   return (
     <div className="relative">
       <div
