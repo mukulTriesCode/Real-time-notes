@@ -2,6 +2,7 @@
 import React from "react";
 import { useAppSelector } from "@/redux/hooks";
 import NotesTitle from "./NotesTitle";
+import SplitText from "./SplitText";
 
 const Notes: React.FC = () => {
   const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
@@ -13,6 +14,7 @@ const Notes: React.FC = () => {
       {selectedNote && (
         <div className="px-10 py-5">
           <div>{selectedNote.content || "Start typing your note here..."}</div>
+          <SplitText text={"Start typing..."} />
         </div>
       )}
     </div>
