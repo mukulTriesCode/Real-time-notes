@@ -1,127 +1,15 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import EmojiInput from "./EmojiPicker";
-import { updateNote } from "@/redux/features/notes/notesSlice";
-import { NoteInterface } from "@/types";
-import PageIcon from "./icons/PageIcon";
-import Input from "./common/Input";
+import React from "react";
+import { useAppSelector } from "@/redux/hooks";
+import NotesTitle from "./NotesTitle";
 
 const Notes: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isEmojiModalOpen, setIsEmojiModalOpen] = useState<boolean>(false);
-  const modalRef = useRef<HTMLDivElement>(null);
-
   const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
   const selectedNote = notes?.find((note) => note?.id === selectedNoteId);
 
-  const [titleValue, setTitleValue] = useState<string>(
-    selectedNote?.title || ""
-  );
-
-  const dispatch = useAppDispatch();
-
-  const updatedNoteContent: Omit<NoteInterface, "createdAt"> = {
-    id: selectedNote?.id || "",
-    title: selectedNote?.title || "",
-    content: selectedNote?.content || "",
-    updatedAt: new Date().toISOString(),
-    icon: selectedNote?.icon || "",
-  };
-
-  const handleEmojiClick = (emoji: string) => {
-    dispatch(
-      updateNote({
-        ...updatedNoteContent,
-        icon: emoji,
-        updatedAt: new Date().toISOString(),
-      })
-    );
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        setIsModalOpen(false);
-        setIsEmojiModalOpen(false);
-      }
-    };
-
-    if (isModalOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isModalOpen]);
-
   return (
     <div>
-      <div className="relative">
-        <div
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsModalOpen((prev) => !prev);
-          }}
-          className="flex gap-2 items-center w-fit cursor-pointer p-1 px-2 hover:bg-light-gray rounded transition"
-        >
-          {selectedNote?.icon ? (
-            <div className="size-8 flex text-[20px] items-center justify-center">
-              {selectedNote.icon}
-            </div>
-          ) : (
-            <PageIcon />
-          )}
-          <h5 className="font-bold w-fit">{selectedNote?.title}</h5>
-        </div>
-        {isModalOpen && (
-          <div
-            ref={modalRef}
-            onClick={(e) => e.stopPropagation()}
-            className="bg-[#222222] rounded-lg p-1 absolute top-full left-0 mt-2 shadow-lg z-50 w-fit flex items-center"
-          >
-            <div
-              onClick={() => setIsEmojiModalOpen((prev) => !prev)}
-              className="size-8 flex items-center justify-center cursor-pointer"
-            >
-              {selectedNote?.icon ? (
-                <div className="size-8 flex text-[20px] items-center justify-center">
-                  {selectedNote.icon}
-                </div>
-              ) : (
-                <PageIcon />
-              )}
-            </div>
-
-            <Input
-              value={titleValue}
-              onChange={(e) => {
-                const newTitle = e.target.value;
-                setTitleValue(newTitle);
-                dispatch(
-                  updateNote({
-                    ...updatedNoteContent,
-                    title: newTitle,
-                    updatedAt: new Date().toISOString(),
-                  })
-                );
-              }}
-              placeholder="Enter note title..."
-            />
-
-            {isEmojiModalOpen && (
-              <div className="absolute top-13 -left-px z-60">
-                <EmojiInput handleEmojiClick={handleEmojiClick} />
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-
+      <NotesTitle />
       {selectedNote && (
         <div className="px-10 py-5">
           <div>{selectedNote.content || "Start typing your note here..."}</div>
