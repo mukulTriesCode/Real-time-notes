@@ -13,8 +13,11 @@ const Notes: React.FC = () => {
       <NotesTitle />
       {selectedNote && (
         <div className="px-10 py-5">
-          <div>{selectedNote.content || "Start typing your note here..."}</div>
-          <SplitText text={"Start typing..."} />
+          {selectedNote.content ? (
+            <div>{selectedNote.content}</div>
+          ) : (
+            <SplitText text={"Start Typing..."} />
+          )}
         </div>
       )}
     </div>
