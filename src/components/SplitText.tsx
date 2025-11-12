@@ -34,7 +34,7 @@ const SplitText: React.FC<{ text: string }> = ({ text }) => {
   }, [text]);
 
   return (
-    <div className="inline-block text-lg">
+    <div className="inline-block">
       {text.split("").map((char, i) => {
         const visible = i < displayText.length;
         return (
