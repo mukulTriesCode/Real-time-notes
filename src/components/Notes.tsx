@@ -9,16 +9,20 @@ const Notes: React.FC = () => {
   const selectedNote = notes?.find((note) => note?.id === selectedNoteId);
 
   return (
-    <div>
+    <div className="h-full">
       <NotesTitle />
       {selectedNote && (
-        <div className="px-10 py-5">
+        <>
           {selectedNote.content ? (
-            <div>{selectedNote.content}</div>
+            <div className="px-10 py-5">
+              <div>{selectedNote.content}</div>
+            </div>
           ) : (
-            <SplitText text={"Start Typing..."} />
+            <div className="text-3xl h-full flex flex-col justify-center items-center">
+              <SplitText text={"Start Typing..."} />
+            </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );
