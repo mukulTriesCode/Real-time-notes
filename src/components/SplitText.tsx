@@ -1,36 +1,57 @@
-import React, { useEffect, useRef } from "react";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 
 const SplitText: React.FC<{ text: string }> = ({ text }) => {
-  const characters = text?.split("") || [];
+  const [displayText, setDisplayText] = useState(text);
+  const reverseRef = useRef(false);
   const charRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
-    // Example usage: log each span's text content
-    charRefs.current.forEach((el, index) => {
-      if (el) {
-        console.log(`Character ${index}:`, el.textContent);
+    if (text.length <= 5) return;
+
+    const totalSteps = text.length - 5;
+    let i = 0;
+
+    const interval = setInterval(() => {
+      if (!reverseRef.current) {
+        if (i < totalSteps) {
+          i++;
+          setDisplayText(text.slice(0, text.length - i));
+        } else {
+          reverseRef.current = true;
+        }
+      } else {
+        if (i > 0) {
+          i--;
+          setDisplayText(text.slice(0, text.length - i));
+        } else {
+          reverseRef.current = false;
+        }
       }
-    });
-    console.log(charRefs)
+    }, 200);
+
+    return () => clearInterval(interval);
   }, [text]);
 
-  if (text.length <= 5) {
-    return <span>{text}</span>;
-  }
-
   return (
-    <>
-      {characters.map((char, index) => (
-        <span
-          key={index}
-          ref={(el) => {
-            charRefs.current[index] = el; // ✅ assign, no return
-          }}
-        >
-          {char}
-        </span>
-      ))}
-    </>
+    <div className="inline-block text-lg">
+      {text.split("").map((char, i) => {
+        const visible = i < displayText.length;
+        return (
+          <span
+            key={i}
+            ref={(el) => {
+              charRefs.current[i] = el;
+            }}
+            className={`inline-block transition-opacity duration-200 ease-in-out ${
+              visible ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {char === " " ? "\u00A0" : char}
+          </span>
+        );
+      })}
+    </div>
   );
 };
 
