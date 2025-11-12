@@ -39,7 +39,9 @@ const Sidebar: React.FC = () => {
                   selectedNoteId === note.id ? "bg-light-gray" : ""
                 }`}
               >
-                <PageIcon />
+                <div className="size-6 flex text-[14px] items-center justify-center">
+                  {note?.icon ? note.icon : <PageIcon />}
+                </div>
                 {note?.title}
               </div>
             ))
