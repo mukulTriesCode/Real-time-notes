@@ -19,11 +19,10 @@ const NotesTitle: React.FC = () => {
   const selectedNote = notes?.find((note) => note?.id === selectedNoteId);
   const titleValue = selectedNote?.title;
 
-  const updatedNoteContent: Omit<NoteInterface, "createdAt"> = {
+  const updatedNoteContent: Omit<NoteInterface, "createdAt" | "updatedAt"> = {
     id: selectedNote?.id || "",
     title: selectedNote?.title || "",
     content: selectedNote?.content || "",
-    updatedAt: new Date().toISOString(),
     icon: selectedNote?.icon || "",
   };
 
@@ -32,7 +31,6 @@ const NotesTitle: React.FC = () => {
       updateNote({
         ...updatedNoteContent,
         icon: emoji,
-        updatedAt: new Date().toISOString(),
       })
     );
   };
@@ -95,7 +93,6 @@ const NotesTitle: React.FC = () => {
                 updateNote({
                   ...updatedNoteContent,
                   title: newTitle,
-                  updatedAt: new Date().toISOString(),
                 })
               );
             }}
