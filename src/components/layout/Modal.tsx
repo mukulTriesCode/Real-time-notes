@@ -1,9 +1,7 @@
+import type { ModalProps } from "@/types";
 import React from "react";
 
-const Modal: React.FC<{ isOpen: boolean; closeModal: () => void }> = ({
-  isOpen,
-  closeModal,
-}) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   if (!isOpen) return null;
 
   return (

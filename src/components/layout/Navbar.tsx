@@ -6,10 +6,9 @@ import Button from "../common/Button";
 import { clearUser } from "@/redux/features/user/userSlice";
 import { supabase } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import type { NavbarProps } from "@/types";
 
-const Navbar: React.FC<{ layout: "default" | "minimal" | "rounded" }> = ({
-  layout = "default",
-}) => {
+const Navbar: React.FC<NavbarProps> = ({ layout = "default" }) => {
   const router = useRouter();
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();

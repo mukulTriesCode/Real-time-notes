@@ -31,3 +31,17 @@ export interface NotesState {
   notes: NoteInterface[];
   selectedNoteId: string | null;
 }
+
+export interface FormProps extends ElementProps {
+  variant?: "card" | "simple";
+  onSubmit?: React.FormEventHandler<HTMLFormElement>;
+}
+
+export interface ModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
+}
+
+export interface NavbarProps {
+  layout: "default" | "minimal" | "rounded";
+}

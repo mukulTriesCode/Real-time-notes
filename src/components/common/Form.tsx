@@ -1,10 +1,5 @@
-import { ElementProps } from "@/types";
+import type { FormProps } from "@/types";
 import React from "react";
-
-interface FormProps extends ElementProps {
-  variant?: "card" | "simple";
-  onSubmit?: React.FormEventHandler<HTMLFormElement>;
-}
 
 const Form: React.FC<FormProps> = ({
   onSubmit,
