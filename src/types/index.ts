@@ -1,5 +1,8 @@
-export interface ElementProps {
+export interface ChildrenProps {
   children: React.ReactNode;
+}
+
+export interface ElementProps extends ChildrenProps {
   className?: string;
 }
 
@@ -14,7 +17,8 @@ export interface ButtonProps extends ElementProps {
   disabled?: boolean;
 }
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 
@@ -44,4 +48,11 @@ export interface ModalProps {
 
 export interface NavbarProps {
   layout: "default" | "minimal" | "rounded";
+}
+
+export interface UserState {
+  user: {
+    id: string;
+    email: string;
+  } | null;
 }
