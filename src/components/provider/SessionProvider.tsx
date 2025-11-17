@@ -1,10 +1,9 @@
 import useAuthRedirect from "@/hooks/useAuthRedirect";
 import useSession from "@/hooks/useSession";
-import React, { use } from "react";
+import type { ChildrenProps } from "@/types";
+import React from "react";
 
-const SessionProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const SessionProvider: React.FC<ChildrenProps> = ({ children }) => {
   useSession();
   useAuthRedirect();
 
