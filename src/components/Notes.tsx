@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAppSelector } from "@/redux/hooks";
 import NotesTitle from "./NotesTitle";
 import SplitText from "./SplitText";
+import Tiptap from "./Tiptap";
 
 const Notes: React.FC = () => {
   const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
@@ -52,9 +53,10 @@ const Notes: React.FC = () => {
                     : "inline-block cursor-text"
                 }
               >
-                <SplitText text={"Start Typing..."} />
+                {/* <SplitText text={"Start Typing..."} /> */}
               </div>
               <div className={isSplitTextClicked ? "opacity-50" : "hidden"}>Start Typing...</div>
+              <Tiptap />
             </div>
           )}
         </>
