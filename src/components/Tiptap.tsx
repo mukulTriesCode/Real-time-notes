@@ -25,12 +25,9 @@ const Tiptap: React.FC = () => {
 
       // 3️⃣ StarterKit (disable paragraph & heading)
       StarterKit.configure({ paragraph: false, heading: false }),
-
-      // 4️⃣ Other extensions
       Underline,
-      Placeholder.configure({ placeholder: "Start typing..." }),
     ],
-    content: "<p>Hello World! 🌎</p>",
+    content: "<p style='text-align: center;'>Start Typing...</p>",
     autofocus: true,
     editable: true,
     injectCSS: true,
@@ -47,7 +44,7 @@ const Tiptap: React.FC = () => {
     ) => (
       <button
         onClick={onClick}
-        className={`px-2 py-1 rounded-md text-sm border transition-colors duration-150 ${
+        className={`px-2 py-1 cursor-pointer rounded-md text-sm border transition-colors duration-150 ${
           active
             ? "bg-white text-black border-white"
             : "bg-[#2a2a2a] text-gray-200 border-[#3a3a3a] hover:bg-[#3a3a3a]"
@@ -121,13 +118,11 @@ const Tiptap: React.FC = () => {
           () => editor.chain().focus().setHorizontalRule().run(),
           "— HR"
         )}
-
-        {/* Alignment using editor.commands.setTextAlign */}
-        <button
-          onClick={() => editor.chain().focus().setTextAlign("left").run()}
-        >
-          Left
-        </button>
+        {btn(
+          editor.isActive({ textAlign: "left" }),
+          () => editor.chain().focus().setTextAlign("left").run(),
+          "Left"
+        )}
         {btn(
           editor.isActive({ textAlign: "center" }),
           () => editor.chain().focus().setTextAlign("center").run(),
