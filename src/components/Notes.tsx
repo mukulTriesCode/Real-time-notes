@@ -21,7 +21,7 @@ const Notes: React.FC = () => {
               <div>{selectedNote.content}</div>
             </div>
           ) : (
-            <div className="text-3xl h-[calc(100%-40px)] flex flex-col justify-center items-center">
+            <div className="max-w-[750px] h-[calc(100vh-60px)] w-full mx-auto flex flex-col justify-center items-center">
               {/* <div
                 ref={splitTextRef}
                 onClick={(e) => {
