@@ -157,7 +157,10 @@ const Tiptap: React.FC = () => {
   return (
     <div>
       <MenuBar />
-      <EditorContent editor={editor} className="min-h-[200px]" />
+      <EditorContent
+        editor={editor}
+        className="min-h-[200px] max-h-[calc(100vh-150px)] overflow-y-auto focus:outline-none"
+      />
     </div>
   );
 };
