@@ -27,7 +27,7 @@ const Tiptap: React.FC = () => {
       StarterKit.configure({ paragraph: false, heading: false }),
       Underline,
     ],
-    content: "<p style='text-align: center;'>Start Typing...</p>",
+    content: "<h1>Start Typing...</h1>",
     autofocus: true,
     editable: true,
     injectCSS: true,
