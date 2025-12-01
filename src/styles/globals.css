@@ -47,6 +47,14 @@ h6 {
     @apply text-sm font-medium;
 }
 
+ul {
+    @apply list-disc pl-5 mb-4;
+}
+
+ol {
+    @apply list-decimal pl-5 mb-4;
+}
+
 .notes-btn {
     @apply flex items-center gap-2 font-semibold px-2 py-1 active:bg-light-gray/80 hover:bg-light-gray rounded-md cursor-pointer transition;
 }
