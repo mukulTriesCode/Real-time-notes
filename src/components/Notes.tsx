@@ -2,8 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppSelector } from "@/redux/hooks";
 import NotesTitle from "./NotesTitle";
-import SplitText from "./SplitText";
-import Tiptap from "./Tiptap";
+// import SplitText from "./SplitText";
+import Tiptap from "./editor/Tiptap";
 
 const Notes: React.FC = () => {
   const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
