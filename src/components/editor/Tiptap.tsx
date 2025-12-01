@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { useEditor, EditorContent, Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import "@tiptap/starter-kit";
@@ -9,8 +9,21 @@ import Paragraph from "@tiptap/extension-paragraph";
 import Heading from "@tiptap/extension-heading";
 import TextAlign from "@tiptap/extension-text-align";
 import MenuBar from "./Menubar";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { updateNote } from "@/redux/features/notes/notesSlice";
 
 const Tiptap: React.FC = () => {
+  const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
+  const dispatch = useAppDispatch();
+
+  const content = useMemo(() => {
+    const savedContent = notes.find(
+      (note) => note.id === selectedNoteId
+    )?.content;
+    console.log('savedContent', savedContent)
+    return savedContent ? JSON.parse(savedContent) : "<h1>Start Typing...</h1>";
+  }, [selectedNoteId]);
+
   const editor = useEditor({
     extensions: [
       Paragraph,
@@ -19,12 +32,23 @@ const Tiptap: React.FC = () => {
       StarterKit.configure({ paragraph: false, heading: false }),
       Underline,
     ],
-    content: "<h1>Start Typing...</h1>",
+    content,
     autofocus: true,
     editable: true,
     injectCSS: true,
     immediatelyRender: false,
+    onUpdate: () => {
+      if (!editor) return;
+      const jsonContent = editor.getHTML();
+      dispatch(
+        updateNote({
+          id: selectedNoteId!,
+          content: JSON.stringify(jsonContent),
+        })
+      );
+    }
   });
+
   return (
     <div>
       <MenuBar editor={editor} />
