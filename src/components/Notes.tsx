@@ -16,11 +16,11 @@ const Notes: React.FC = () => {
       <NotesTitle />
       {selectedNote && (
         <>
-          {selectedNote.content ? (
+          {/* {selectedNote.content ? (
             <div className="px-10 py-5">
               <div>{selectedNote.content}</div>
             </div>
-          ) : (
+          ) : ( */}
             <div className="max-w-[750px] h-[calc(100vh-60px)] w-full mx-auto flex flex-col justify-center items-center">
               {/* <div
                 ref={splitTextRef}
@@ -37,7 +37,7 @@ const Notes: React.FC = () => {
               {/* <div className={isSplitTextClicked ? "opacity-50" : "hidden"}>Start Typing...</div> */}
               <Tiptap />
             </div>
-          )}
+          {/* )} */}
         </>
       )}
     </div>
