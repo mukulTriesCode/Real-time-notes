@@ -15,14 +15,9 @@ import { updateNote } from "@/redux/features/notes/notesSlice";
 const Tiptap: React.FC = () => {
   const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
   const dispatch = useAppDispatch();
-
-  const content = useMemo(() => {
-    const savedContent = notes.find(
-      (note) => note.id === selectedNoteId
-    )?.content;
-    console.log('savedContent', savedContent)
-    return savedContent ? JSON.parse(savedContent) : "<h1>Start Typing...</h1>";
-  }, [selectedNoteId]);
+  const savedContent = notes.find(
+    (note) => note.id === selectedNoteId
+  )?.content;
 
   const editor = useEditor({
     extensions: [
@@ -32,21 +27,21 @@ const Tiptap: React.FC = () => {
       StarterKit.configure({ paragraph: false, heading: false }),
       Underline,
     ],
-    content,
+    content: savedContent ?? "<h1>Start Typing...</h1>",
     autofocus: true,
     editable: true,
     injectCSS: true,
     immediatelyRender: false,
     onUpdate: () => {
       if (!editor) return;
-      const jsonContent = editor.getHTML();
+      const htmlContent = editor.getHTML();
       dispatch(
         updateNote({
           id: selectedNoteId!,
-          content: JSON.stringify(jsonContent),
+          content: htmlContent,
         })
       );
-    }
+    },
   });
 
   return (
