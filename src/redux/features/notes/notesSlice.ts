@@ -28,7 +28,7 @@ export const notesSlice = createSlice({
     },
     updateNote: (
       state,
-      action: PayloadAction<Omit<NoteInterface, "createdAt" | "updatedAt">>
+      action: PayloadAction<Partial<Omit<NoteInterface, "createdAt" | "updatedAt">>>
     ) => {
       const note = state.notes.find((note) => note.id === action.payload.id);
       if (note) {
