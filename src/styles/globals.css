@@ -55,6 +55,10 @@ ol {
     @apply list-decimal pl-5 mb-4;
 }
 
+blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic mb-4;
+}
+
 .notes-btn {
     @apply flex items-center gap-2 font-semibold px-2 py-1 active:bg-light-gray/80 hover:bg-light-gray rounded-md cursor-pointer transition;
 }
