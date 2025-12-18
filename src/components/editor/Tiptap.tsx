@@ -15,9 +15,8 @@ import { updateNote } from "@/redux/features/notes/notesSlice";
 const Tiptap: React.FC = () => {
   const { selectedNoteId, notes } = useAppSelector((state) => state.notes);
   const dispatch = useAppDispatch();
-  const savedContent = notes.find(
-    (note) => note.id === selectedNoteId
-  )?.content;
+  const selectedNote = notes?.find((note) => note?.id === selectedNoteId);
+  const savedContent = selectedNote?.content;
 
   const editor = useEditor({
     extensions: [
@@ -44,10 +43,19 @@ const Tiptap: React.FC = () => {
     },
   });
 
+  useEffect(() => {
+    if (editor && !savedContent) {
+      editor.commands.setContent("<h1>Start Typing...</h1>");
+    } else if (editor && savedContent && savedContent !== editor.getHTML()) {
+      editor.commands.setContent(savedContent);
+    }
+  }, [savedContent, editor]);
+
   return (
     <div>
       <MenuBar editor={editor} />
       <EditorContent
+        key={selectedNoteId}
         editor={editor}
         className="min-h-[200px] max-h-[calc(100vh-150px)] overflow-y-auto focus:outline-none"
       />
